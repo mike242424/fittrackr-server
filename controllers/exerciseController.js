@@ -42,8 +42,7 @@ exports.getExercise = async (req, res) => {
   }
 };
 
-// POST an exercise for a workout
-// POST an exercise for a workout
+// POST an exercise for a specific workout
 exports.createExercise = async (req, res) => {
   try {
     const workoutId = req.params.workoutId;
@@ -64,7 +63,6 @@ exports.createExercise = async (req, res) => {
 
     const newExercise = await Exercise.create(exerciseData);
 
-    // Push the newly created exercise's ID into the workout's exercises array
     workout.exercises.push(newExercise._id);
 
     await workout.save();
@@ -81,7 +79,7 @@ exports.createExercise = async (req, res) => {
   }
 };
 
-// PUT update an exercise
+// PUT update an exercise for a specific workout
 exports.updateExercise = async (req, res) => {
   try {
     const exercise = await Exercise.findOneAndUpdate(
@@ -112,7 +110,7 @@ exports.updateExercise = async (req, res) => {
   }
 };
 
-// DELETE an exercise
+// DELETE an exercise for a specific workout
 exports.deleteExercise = async (req, res) => {
   try {
     const exercise = await Exercise.findOneAndDelete({
