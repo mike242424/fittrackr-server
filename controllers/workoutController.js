@@ -4,7 +4,9 @@ const Exercise = require("../models/exerciseModel");
 // GET all workouts
 exports.getAllWorkouts = async (req, res) => {
   try {
-    const workouts = await Workout.find().populate("exercises");
+    const workouts = await Workout.find()
+      .populate("exercises")
+      .sort({ createdAt: -1 });
 
     res.status(200).json({
       status: "success",
