@@ -7,6 +7,10 @@ const workoutSchema = new Schema(
       type: String,
       required: true,
     },
+    location: {
+      type: String,
+      required: true,
+    },
     exercises: [
       {
         type: Schema.Types.ObjectId,
